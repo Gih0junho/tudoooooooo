@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TudoFala - Comunicação Inovadora</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/assents/css/styles.css" />
   <link rel="shortcut icon" type="image/x-icon" href="download-removebg-preview.png">
 
 </head>
@@ -165,18 +165,6 @@
   </div>
 </div>
 
-
-  <section id="areaRestrita">
-    <h2>Área Restrita - Exercícios de Comunicação</h2>
-    <p>Bem-vindo(a)! Escolha um exercício para começar:</p>
-    <ul>
-      <li><button>Exercício 1 - Dicção</button></li>
-      <li><button>Exercício 2 - Expressão Corporal</button></li>
-      <li><button>Exercício 3 - Escuta Ativa</button></li>
-    </ul>
-    <button id="btnSair">Sair</button>
-  </section>
-
 </main>
 
 <footer>
@@ -216,12 +204,33 @@
 <label for="newPhone">Telefone:</label>
 <input type="tel" id="newPhone" name="newPhone" required />
 
+<label for="newPurpose">Finalidade da Plataforma:</label>
+<select id="newPurpose" name="newPurpose" required onchange="toggleOtherPurpose(this)">
+  <option value="pessoal">Pessoal</option>
+  <option value="profissional">Profissional</option>
+  <option value="educacional">Educacional</option>
+  <option value="outro">Outros</option>
+</select>
+<input type="text" id="otherPurpose" name="otherPurpose" placeholder="Especifique a finalidade" style="display:none;" />
+
+<script>
+function toggleOtherPurpose(select) {
+  const otherPurposeInput = document.getElementById('otherPurpose');
+  if (select.value === 'outro') {
+    otherPurposeInput.style.display = 'block';
+  } else {
+    otherPurposeInput.style.display = 'none';
+  }
+}
+</script>
+</select>
+
       <button type="submit" class="submit-btn">Criar Conta</button>
     </form>
   </div>
 </div>
 
-<script src="scripts.js"></script>
+<script src="/assents/js/inicial.js"></script>
 
 </body>
 </html>
