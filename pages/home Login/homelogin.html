@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="/assents/css/homelogin.css">
+    <!-- Adicione bibliotecas de gráficos aqui, se necessário -->
+</head>
+<body>
+    <div class="sidebar">
+        <img src="caminho/para/imagem_do_usuario.jpg" alt="Foto do Usuário" onclick="toggleMenu()">
+        <div id="menu" style="display:none;">
+            <ul>
+                <li><a href="#configuracoes">Configurações</a></li>
+                <li><a href="#informacoes">Informações</a></li>
+                <li><a href="#progresso">Progresso</a></li>
+                <li><a href="#plano">Plano</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <h1>Bem-vindo à sua Página Inicial</h1>
+        <div id="grafico-progresso">
+            <!-- Código para o gráfico do progresso -->
+        </div>
+        <div id="atividades">
+            <h2>Atividades</h2>
+            <ul>
+                <li>Atividade 1 - <button>Concluir</button></li>
+                <li>Atividade 2 - <button disabled>Concluir</button></li>
+                <!-- Adicione mais atividades conforme necessário -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

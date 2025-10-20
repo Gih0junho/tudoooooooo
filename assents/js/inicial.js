@@ -61,7 +61,7 @@ document.getElementById('formLogin').addEventListener('submit', e => {
     alert(`Bem-vindo(a), ${user}!`);
     fecharModal(modalLogin);
     e.target.reset();
-    window.location.href = "exercicio.html.html"; // redireciona para o arquivo correto
+    window.location.href = "homelogin.html"; // redireciona para o arquivo correto
   } else {
     alert('Usuário ou senha incorretos.');
   }
@@ -82,20 +82,6 @@ document.getElementById('formCriarConta').addEventListener('submit', e => {
   alert('Conta criada com sucesso! Agora faça login.');
   fecharModal(modalCriarConta);
   e.target.reset();
-});
-
-// Área restrita
-function entrarAreaRestrita() {
-  areaRestrita.style.display = 'block';
-  mainSections.forEach(s => s.style.display = 'none');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-btnSair.addEventListener('click', () => {
-  areaRestrita.style.display = 'none';
-  mainSections.forEach(s => s.style.display = 'block');
-  alert('Você saiu da área restrita.');
-  window.scrollTo({top:0, behavior:'smooth'});
 });
 
 // Logo volta para o início
