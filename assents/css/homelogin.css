@@ -1,49 +1,99 @@
-/* criar o layout da página inicial após o login */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0f2f5;
-  margin: 0;
-  padding: 0;
-}   
-header {
-  background: #0055ff;
-  color: white;
-  padding: 15px 30px;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
+/*Estilizar o sidebar*/
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
 }
-main {
-  padding: 20px 40px;
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
 }
-h1 {
-  color: #333;
+#sidebar ul li {
+    padding: 15px 20px;
 }
-p {
-  color: #555;
-  font-size: 1.1rem;
+#sidebar ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: block;
 }
-button {
-  background: #0055ff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
+#sidebar ul li a:hover {
+    background-color: #34495e;
 }
-button:hover {
-  background: #003bb5;
+
+#user-photo {
+    position: relative;
+    display: inline-block;
 }
-footer {
-  background: #f1f1f1;
-  text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 0.9rem;
-  color: #777;
+#user-photo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px ;
+}
+#user-photo ul {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 100;
+    background-color: #fff;
+    box-shadow: 0 10px 5px rgba(0,0,0,0.2);
+    list-style-type: none;
+    padding: 10px 0;
+    margin-left: 25px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+#user-photo ul li {
+    padding: 10px 20px;
+    transition: all 0.3s ease; /
+}
+
+#user-photo ul li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#user-photo ul li a:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05); 
+    padding-left: 25px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    color: #2980b9; 
+    font-weight: bold; 
+}
+
+#user-greeting {
+    color: #ecf0f1;
+    margin-left: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+    /*Colocar o nome mais para acima*/
+    position: relative;
+    top: -25px;
+    
+}
+/*Estilizar o cabeçalho*/
+#header {
+    margin-left: 250px;
+    height: 60px;
+    background-color: #2980b9;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+#header h1 {
+    margin: 0;
+    font-size: 24px;
 }
 

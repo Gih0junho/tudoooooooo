@@ -1,0 +1,81 @@
+/*Estilizar a pagina das configuracaoes segunido a do homelogin*/
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f1;
+}
+#header {
+    margin-left: 250px;
+    height: 60px;
+    background-color: #2980b9;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+#header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+#content {
+    margin-left: 250px;
+    padding: 20px;
+}
+h2 {
+    color: #2980b9;
+}
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background-color: #2980b9;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #3498db;
+}
+/*Estilizar o menu suspenso igual ao do homelogin*/
+#user-photo ul {
+    position: absolute;
+    top: 60px;
+    right: 100;
+    background-color: #fff;
+    box-shadow: 0 10px 5px rgba(0,0,0,0.2);
+    list-style-type: none;
+    padding: 10px 0;
+    margin-left: 25px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+#user-photo ul li a:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05); 
+    padding-left: 25px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    color: #2980b9; 
+    font-weight: bold; 
+}

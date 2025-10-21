@@ -52,20 +52,26 @@ window.addEventListener('click', e => {
 });
 
 // Login unificado e redirecionamento
+
 document.getElementById('formLogin').addEventListener('submit', e => {
   e.preventDefault();
   const user = e.target.loginUser.value.trim();
   const pass = e.target.loginPass.value;
 
   if(usuarios[user] && usuarios[user] === pass) {
+    localStorage.setItem('username', user); // Salva o nome do usuário
     alert(`Bem-vindo(a), ${user}!`);
     fecharModal(modalLogin);
     e.target.reset();
-    window.location.href = "homelogin.html"; // redireciona para o arquivo correto
+    
+    // Corrige o caminho do redirecionamento
+    console.log('Redirecionando para:', 'pages/homeLogin/homelogin.html');
+    window.location.href = 'pages/homeLogin/homelogin.html';
   } else {
     alert('Usuário ou senha incorretos.');
   }
 });
+
 
 // Criar conta
 document.getElementById('formCriarConta').addEventListener('submit', e => {
