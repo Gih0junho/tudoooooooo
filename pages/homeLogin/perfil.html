@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Tudo Fala</title>
+    <link rel="stylesheet" href="/assents/css/perfil.css">
+    
+    </head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/pages/homeLogin/homelogin.html" class="logo">
+                <img src="/assents/img/download-removebg-preview.png" alt="Logo Tudo Fala">
+                <h1>Tudo Fala</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/pages/homeLogin/homelogin.html">Início</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="pagina-usuario">
+            <div class="container">
+                <h2>Minha Conta</h2>
+                <div class="usuario-conteudo">
+                    <div class="usuario-foto">
+                        <img src="/assents/img/UserA.png" id="profile-pic" alt="Foto do Usuário">
+                        <input type="file" id="input-foto" accept="image/*" style="display: none;">
+                        <button id="btn-mudar-foto" class="lps"><img src="/assents/img/UserA.png" alt=""></button>
+                    </div>
+                    <div class="usuario-info">
+                        <form id="form-usuario">
+                            <div class="form-grupo">
+                                <label for="nome">Nome Completo:</label>
+                                <input type="text" id="loginUser" name="nome" readonly>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="newEmail" name="email" readonly>
+                            </div>
+                            <div class="form-grupo">
+                                <label for="telefone">Telefone:</label>
+                                <input type="tel" id="newPhone" name="telefone" placeholder="Seu telefone">
+                            </div>
+                            <div class="form-grupo">
+                                <label for="endereco">Finalidade</label>
+                                <textarea id="endereco" name="endereco" placeholder="Seu endereço completo"></textarea>
+                            </div>
+                            <button type="submit" class="btn">Salvar Informações</button>
+                        </form>
+                        <div class="usuario-acoes">
+                            <a href="/pages/homeLogin/homelogin.html" class="btn">Voltar Principal</a>
+                            <button id="btn-logout" class="btn btn-logout">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="slogan">Feito com muita conversa</p>
+            <div class="social">
+                <a href="https://www.instagram.com/tudo.fala" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    <img src="/assents/img/instagram - Copia.jpeg" alt="Instagram" class="footer-icon">
+                </a>
+                <a href="mailto:Tudo.Fala@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    <img src="/assents/img/gmail.jpeg" alt="Email" class="footer-icon">
+                    Tudo.Fala@gmail.com
+                </a>
+            </div>
+            <p class="copyright">&copy; 2025 Tudo Fala. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="/assents/js/perfil.js"></script>
+</body>
+</html>

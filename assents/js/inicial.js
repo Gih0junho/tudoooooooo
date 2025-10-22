@@ -58,8 +58,9 @@ document.getElementById('formLogin').addEventListener('submit', e => {
   const user = e.target.loginUser.value.trim();
   const pass = e.target.loginPass.value;
 
-  if(usuarios[user] && usuarios[user] === pass) {
-    localStorage.setItem('username', user); // Salva o nome do usuário
+ if (usuarios[user] && usuarios[user].senha === pass) {
+    localStorage.setItem('username', user);
+    localStorage.setItem('dadosUsuario', JSON.stringify(usuarios[user]));
     alert(`Bem-vindo(a), ${user}!`);
     fecharModal(modalLogin);
     e.target.reset();
@@ -76,14 +77,27 @@ document.getElementById('formLogin').addEventListener('submit', e => {
 // Criar conta
 document.getElementById('formCriarConta').addEventListener('submit', e => {
   e.preventDefault();
+
   const user = e.target.newUser.value.trim();
   const pass = e.target.newPass.value;
+  const email = e.target.newEmail.value;
+  const telefone = e.target.newPhone.value;
 
   if(user in usuarios) {
     alert('Usuário já existe. Escolha outro.');
     return;
   }
-  usuarios[user] = pass;
+
+  // Salva todos os dados
+  usuarios[user] = {
+    senha: pass,
+    nome: user,
+    email: email,
+    telefone: telefone,
+    endereco: "",
+    foto: ""
+  };
+
   localStorage.setItem('usuarios', JSON.stringify(usuarios));
   alert('Conta criada com sucesso! Agora faça login.');
   fecharModal(modalCriarConta);

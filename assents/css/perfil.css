@@ -1,0 +1,214 @@
+/* Fonte principal */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f9fd;
+    color: #333;
+}
+
+/* Container padrão */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 0;
+    
+
+}
+
+/* Header */
+header {
+    background-color: #2980b9;
+    color: white;
+    height: 60px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo img {
+    height: 50px;
+    margin-top: -29px;
+    margin-left: -150px;
+
+}
+
+.logo h1 {
+    
+    font-size: 28px;
+    margin-top: -23px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+   
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Página do usuário */
+.pagina-usuario h2 {
+    text-align: center;
+    
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.usuario-conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.usuario-foto {
+    text-align: center;
+}
+
+.usuario-foto img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #2980b9;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1f6391;
+}
+
+.usuario-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.form-grupo {
+    margin-bottom: 20px;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.usuario-acoes {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Botão de logout com estilo diferente */
+.btn-logout {
+    background-color: #2980b9;
+}
+
+.btn-logout:hover {
+    background-color: #2c3e50;
+}
+
+/* Footer */
+footer {
+    background-color: #ecf0f1;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.slogan {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #2980b9;
+}
+
+.footer-icon {
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #2980b9;
+}
+
+/* Estilo para o botão de mudar foto com ícone pequeno */
+.lps {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.lps img {
+    width: 24px; /* Tamanho pequeno do ícone */
+    height: 24px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+.lps:hover img {
+    transform: scale(1.1);
+    /* Opcional: adicionar fundo para destaque */
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}

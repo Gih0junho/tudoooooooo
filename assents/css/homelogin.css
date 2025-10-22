@@ -97,3 +97,12 @@
     font-size: 24px;
 }
 
+.lgt{
+    color: #0915ea;
+    text-decoration: none;
+    display: block;
+
+}
+.lgt:hover {
+    background-color: #34495e;
+}
