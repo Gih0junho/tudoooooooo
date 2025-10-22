@@ -70,7 +70,7 @@ nav a:hover {
 
 /* Página do usuário */
 .pagina-usuario h2 {
-    text-align: center;
+    text-align: left 10px;
     
     margin-bottom: 30px;
     color: #2c3e50;
@@ -188,27 +188,74 @@ footer a:hover {
     color: #2980b9;
 }
 
-/* Estilo para o botão de mudar foto com ícone pequeno */
+/* Estilo para diminuir  */
+
 .lps {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    display: inline-block;
+  background-color: #b8d9ef;   /* 🎨 cor de fundo dentro do círculo */
+  border-color: #1f6391;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;          /* 🔵 mantém o formato circular */
+  align-items: center;
+  z-index: 10;
+
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  overflow: hidden;            /* ✂️ garante que o fundo não vaze */
+/*centralizar a imagm dentro do circulo*/
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 275px;                  /* posição vertical */
+    left: 270px;                 /* posição horizontal */
 }
 
+/*lápis */
 .lps img {
-    width: 24px; /* Tamanho pequeno do ícone */
-    height: 24px;
-    object-fit: contain;
-    transition: transform 0.2s ease;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  pointer-events: none;        /* evita interferir no clique */
 }
 
-/* Efeito ao passar o mouse */
-.lps:hover img {
-    transform: scale(1.1);
-    /* Opcional: adicionar fundo para destaque */
-    background-color: #e0e0e0;
-    border-radius: 4px;
+/* Efeito hover no botão inteiro */
+.lps:hover {
+  transform: scale(1.2);       /* aumenta o círculo todo */
+  background-color: #1f6391;   /* muda a cor junto com o efeito */
+}
+.lps:active {
+  transform: scale(1.1);       /* efeito ao clicar */
+}
+/* Ajuste para telas menores */
+@media (max-width: 600px) {
+  .lps {
+    top: 220px;                /* ajusta a posição para telas menores */
+    left: 200px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #4CAF50; /* verde sucesso */
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  padding: 14px;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
 }

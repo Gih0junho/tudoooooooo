@@ -56,6 +56,8 @@ if (dadosUsuario) {
         const telefone = document.getElementById("telefone").value;
         const endereco = document.getElementById("endereco").value;
         const foto = profilePic.src;
+    //alertar que atualizacao foi feita com sucesso
+    alert("Atualizando informações...");
 
  usuarios[username] = {
         ...usuarios[username],
@@ -68,7 +70,8 @@ if (dadosUsuario) {
 
 localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-        alert("Informações salvas com sucesso!");
+       mostrarMensagem("Informações salvas com sucesso!");
+
     });
 
     // Botão de logout
@@ -92,6 +95,15 @@ localStorage.setItem("usuarios", JSON.stringify(usuarios));
       ...dados
     };
     localStorage.setItem("usuarios", JSON.stringify(todosUsuarios));
-  }}});
+    function mostrarMensagem(texto) {
+    const toast = document.getElementById("mensagem-sucesso");
+    toast.textContent = texto;
+    toast.classList.add("show");
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000); // some após 3 segundos
+}
+
+}}});
 
   
