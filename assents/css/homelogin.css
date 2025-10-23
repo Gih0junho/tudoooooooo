@@ -1,117 +1,126 @@
-/*Estilizar o sidebar*/
+/* Sidebar estilizado */
 #sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: #2c3e50;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(180deg, #2c3e50, #34495e);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 30px;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 }
+
+/* Menu lateral */
 #sidebar ul {
-    list-style-type: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 #sidebar ul li {
-    padding: 15px 20px;
+  padding: 15px 20px;
 }
 #sidebar ul li a {
-    color: #ecf0f1;
-    text-decoration: none;
-    display: block;
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 #sidebar ul li a:hover {
-    background-color: #34495e;
+  background-color: #3b5770;
+  padding-left: 30px;
 }
 
+/* Foto e saudação */
 #user-photo {
-    position: relative;
-    display: inline-block;
+  text-align: center;
+  margin-bottom: 20px;
 }
 #user-photo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 10px ;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
-#user-photo ul {
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 100;
-    background-color: #fff;
-    box-shadow: 0 10px 5px rgba(0,0,0,0.2);
-    list-style-type: none;
-    padding: 10px 0;
-    margin-left: 25px;
-    border-radius: 5px;
-    z-index: 1000;
-}
-
-#user-photo ul li {
-    padding: 10px 20px;
-    transition: all 0.3s ease; /
-}
-
-#user-photo ul li a {
-    color: #333;
-    text-decoration: none;
-    display: block;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-#user-photo ul li a:hover {
-    background-color: #f0f0f0;
-    transform: scale(1.05); 
-    padding-left: 25px; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-    color: #2980b9; 
-    font-weight: bold; 
-}
-
 #user-greeting {
-    color: #ecf0f1;
-    margin-left: 10px;
-    font-size: 18px;
-    vertical-align: middle;
-    /*Colocar o nome mais para acima*/
-    position: relative;
-    top: -25px;
-    
+  display: block;
+  margin-top: 10px;
+  color: #ecf0f1;
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
 }
-/*Estilizar o cabeçalho*/
+
+/* Menu suspenso */
+#menu {
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+}
+#menu li a {
+  color: #333;
+  padding: 12px 20px;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+#menu li a:hover {
+  background-color: #f0f0f0;
+  color: #2980b9;
+}
+
+/* Cabeçalho */
 #header {
-    margin-left: 250px;
-    height: 60px;
-    background-color: #2980b9;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
+  margin-left: 250px;
+  height: 70px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 #header h1 {
-    margin: 0;
-    font-size: 24px;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
-.lgt{
-    color: #0915ea;
-    text-decoration: none;
-    display: block;
+/* Botão logout */
+.lgt a {
+  color: #e74c3c !important;
+  font-weight: bold;
+}
+.lgt a:hover {
+  background-color: #ffe6e6 !important;
+  color: #c0392b !important;
+}
 
+/* Animação */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.lgt:hover {
-    background-color: #34495e;
-}
-/* Ajuste para telas menores */
-@media (max-width: 600px) {
-  .lps {
-    top: 220px;                /* ajusta a posição para telas menores */
-    left: 200px;
-    width: 36px;
-    height: 36px;
+
+/* Responsivo */
+@media (max-width: 768px) {
+  #sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 20px;
+  }
+  #header {
+    margin-left: 0;
+    height: auto;
+    padding: 20px;
+    text-align: center;
   }
 }

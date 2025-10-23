@@ -87,14 +87,16 @@ nav a:hover {
     text-align: center;
 }
 
-.usuario-foto img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid #2980b9;
-    object-fit: cover;
-    margin-bottom: 10px;
+.foto-usuario {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #2980b9;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
+
+
 
 .btn {
     background-color: #2980b9;
@@ -190,39 +192,40 @@ footer a:hover {
 
 /* Estilo para diminuir  */
 
+.usuario-foto {
+  position: relative;
+  display: inline-block;
+}
+
 .lps {
-  background-color: #b8d9ef;   /* 🎨 cor de fundo dentro do círculo */
-  border-color: #1f6391;
+  position: absolute;
+  bottom: 220px;   /* ⬇️ posiciona no canto inferior */
+  right: 5px;    /* ➡️ posiciona no canto direito */
+  background-color: #b8d9ef;
+    border-color: #1f6391;
   cursor: pointer;
   width: 35px;
   height: 35px;
-  border-radius: 50%;          /* 🔵 mantém o formato circular */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  z-index: 10;
-
   transition: transform 0.2s ease, background-color 0.2s ease;
-  overflow: hidden;            /* ✂️ garante que o fundo não vaze */
-/*centralizar a imagm dentro do circulo*/
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 275px;                  /* posição vertical */
-    left: 270px;                 /* posição horizontal */
+  z-index: 10;
 }
 
-/*lápis */
 .lps img {
-  width: 45px;
-  height: 45px;
+  width: 28px;
+  height: 35px;
   object-fit: contain;
-  pointer-events: none;        /* evita interferir no clique */
+  pointer-events: none;
 }
 
-/* Efeito hover no botão inteiro */
 .lps:hover {
-  transform: scale(1.2);       /* aumenta o círculo todo */
-  background-color: #1f6391;   /* muda a cor junto com o efeito */
+  transform: scale(1.2);
+  background-color: #1f6391;
 }
+
 .lps:active {
   transform: scale(1.1);       /* efeito ao clicar */
 }
