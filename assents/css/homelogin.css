@@ -106,3 +106,12 @@
 .lgt:hover {
     background-color: #34495e;
 }
+/* Ajuste para telas menores */
+@media (max-width: 600px) {
+  .lps {
+    top: 220px;                /* ajusta a posição para telas menores */
+    left: 200px;
+    width: 36px;
+    height: 36px;
+  }
+}
