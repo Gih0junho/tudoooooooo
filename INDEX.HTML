@@ -16,12 +16,9 @@
   <nav>
     <a href="#inicio">Início</a>
     <a href="#sobre">Sobre</a>
-    <a href="#identidade">Identidade</a>
     <a href="#servicos">Serviços</a>
     <a href="#equipe">Equipe</a>
-    <a href="#depoimentos">Depoimentos</a>
     <a href="#contato">Contato</a>
-    <button id="btnLogin">Entrar</button>
     <button id="btnCriarConta">Criar Conta</button>
   </nav>
 </header>
@@ -40,7 +37,7 @@
     e suporte psicológico, garantindo um desenvolvimento completo e alinhado às necessidades de cada cliente.</p>
   </section>
 
-  <section id="identidade">
+  <div class="fundo-retangular"><section id="identidade">
     <h2>Identidade</h2>
     <div class="card-container">
       <div class="card">
@@ -82,7 +79,7 @@
         <p>Práticas guiadas para desenvolver dicção, expressão corporal e escuta ativa.</p>
       </div>
     </div>
-  </section>
+  </section></div>
 
   <section id="equipe">
     <h2>Equipe</h2>
@@ -105,65 +102,18 @@
       <div class="team-member">
         <img src="/assents/img/WhatsApp Image 2025-08-22 at 15.19.50.jpeg" alt="Giovana Junho"  class="rotate-img">
         <h3>Giovana Junho - DEV</h3>
-        <p>Desenvolve o site e o app da Tudo Fala.</p>
+        <p>Desenvolvedora da Tudo Fala.</p>
       </div>
       <div class="team-member">
         <img src="/assents/img/WhatsApp Image 2025-08-22 at 15.19.55.jpeg" alt="Ana B" />
         <h3>Ana Beatriz - DEV</h3>
-        <p>Desenvolve o site e o app da Tudo Fala.</p>
+        <p>Desenvolvedora da Tudo Fala.</p>
       </div>
     </div>
   </section>
-
-  <section id="depoimentos" style="max-width: 700px; margin: 60px auto; position: relative;">
-    <h2>Depoimentos</h2>
-    <blockquote class="depoimento" style="display:none; margin-bottom: 20px; font-style: italic; color: #333;">
-      "A qualidade do serviço foi excepcional, superando todas as minhas expectativas. O suporte ao cliente foi impecável, 
-      sempre disponível e pronto para ajudar em qualquer situação. Com certeza, usaremos novamente no futuro, pois a experiência 
-      foi realmente garantida e valeu a pena."
-      <footer>— Carlos Mendes, Diretor de TI</footer>
-    </blockquote>
-    <blockquote class="depoimento" style="display:none; margin-bottom: 20px; font-style: italic; color: #333;">
-      "O acompanhamento personalizado realmente fez diferença no meu desenvolvimento. A atenção aos detalhes e o feedback 
-      constante foram fundamentais para que eu pudesse evoluir de maneira significativa. Senti que cada sessão era adaptada 
-      às minhas necessidades, o que fez toda a diferença no meu progresso."
-      <footer>— Ana Silva, Palestrante</footer>
-    </blockquote>
-    <blockquote class="depoimento" style="display:none; margin-bottom: 20px; font-style: italic; color: #333;">
-      "Recomendo a TudoFala para qualquer profissional que queira melhorar sua comunicação de forma eficaz e impactante. A equipe
-      é altamente qualificada e oferece um serviço excepcional, que realmente transforma a maneira como nos expressamos. Não hesite 
-      em experimentar, pois os resultados são visíveis e visíveis."
-      <footer>— Marcos Oliveira, Empresário</footer>
-    </blockquote>
-
-    <button id="prevDepoimento" aria-label="Depoimento anterior" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: transparent; border: none; font-size: 2rem; color: #0055ff; cursor: pointer; user-select: none;">&#8592;</button>
-    <button id="nextDepoimento" aria-label="Próximo depoimento" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: transparent; border: none; font-size: 2rem; color: #0055ff; cursor: pointer; user-select: none;">&#8594;</button>
+    <button id="prevDepoimento"></button>
+    <button id="nextDepoimento" ></button>
   </section>
-
-  <div class="social-container">
-  <div class="social-icon">
-    <a href="https://instagram.com/_tudofala" target="_blank" rel="noopener">
-      <img src="instagram - Copia.jpeg" alt="Instagram">
-      <h3>Instagram</h3>
-    </a>
-  </div>
-
-  <div class="social-icon">
-    <a href="mailto:henriquevilibor@gmail.com" target="_blank" rel="noopener">
-      <img src="gmail.jpeg" alt="Gmail">
-      <h3>Gmail</h3>
-    </a>
-  </div>
-
-  <div class="social-icon">
-    <a href="https://api.whatsapp.com/send/?phone=5519997604732&text&type=phone_number&app_absent=0" 
-       target="_blank" 
-       rel="noopener">
-      <img src="whatsapp.jpeg" alt="WhatsApp">
-      <h3>WhatsApp</h3>
-    </a>
-  </div>
-</div>
 
 </main>
 
@@ -225,10 +175,24 @@ function toggleOtherPurpose(select) {
 </script>
 </select>
 
-      <button type="submit" class="submit-btn">Criar Conta</button>
-    </form>
-  </div>
+<div style="text-align:center; margin-top:20px;">
+  <p style="font-size:0.95rem; color:#333;">
+    Já tem conta?
+    <span id="linkParaLogin" style="
+      color:#0055ff;
+      cursor:pointer;
+      font-weight:700;
+      text-decoration:underline;
+      transition:color 0.3s ease;
+    ">Entrar</span>
+  </p>
 </div>
+
+<button type="submit" class="submit-btn" style="
+  margin-top:15px;
+  width:100%;
+">Criar Conta</button>
+
 
 <script src="assents/js/inicial.js"></script>
 

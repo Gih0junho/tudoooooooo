@@ -10,22 +10,24 @@ function mostrarDepoimento(index) {
   });
 }
 
-btnPrev.addEventListener('click', () => {
-  currentIndex--;
-  if (currentIndex < 0) currentIndex = depoimentos.length - 1;
-  mostrarDepoimento(currentIndex);
-});
+if (depoimentos.length > 0 && btnPrev && btnNext) {
+  btnPrev.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + depoimentos.length) % depoimentos.length;
+    mostrarDepoimento(currentIndex);
+  });
 
-btnNext.addEventListener('click', () => {
-  currentIndex++;
-  if (currentIndex >= depoimentos.length) currentIndex = 0;
-  mostrarDepoimento(currentIndex);
-});
+  btnNext.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % depoimentos.length;
+    mostrarDepoimento(currentIndex);
+  });
 
-mostrarDepoimento(currentIndex);
+  mostrarDepoimento(currentIndex);
+}
+
+
+
 
 // Modal login e criar conta
-const btnLogin = document.getElementById('btnLogin');
 const btnCriarConta = document.getElementById('btnCriarConta');
 const modalLogin = document.getElementById('modalLogin');
 const modalCriarConta = document.getElementById('modalCriarConta');
@@ -41,8 +43,13 @@ let usuarios = JSON.parse(localStorage.getItem('usuarios')) || {};
 function abrirModal(modal) { modal.style.display = 'flex'; }
 function fecharModal(modal) { modal.style.display = 'none'; }
 
-btnLogin.addEventListener('click', () => abrirModal(modalLogin));
-btnCriarConta.addEventListener('click', () => abrirModal(modalCriarConta));
+const btnLogin = document.getElementById('btnLogin');
+if (btnLogin) {
+  btnLogin.addEventListener('click', () => abrirModal(modalLogin));
+}
+if (btnCriarConta) {
+  btnCriarConta.addEventListener('click', () => abrirModal(modalCriarConta));
+}
 closeLogin.addEventListener('click', () => fecharModal(modalLogin));
 closeCriar.addEventListener('click', () => fecharModal(modalCriarConta));
 
@@ -106,8 +113,16 @@ document.getElementById('formCriarConta').addEventListener('submit', e => {
 
 // Logo volta para o início
 logo.addEventListener('click', () => {
-  if(areaRestrita.style.display === 'block') {
+  if(areaRestrita && areaRestrita.style.display === 'block' && btnSair) {
     btnSair.click();
   }
   window.scrollTo({top:0, behavior:'smooth'});
 });
+
+const linkParaLogin = document.getElementById('linkParaLogin');
+if (linkParaLogin) {
+  linkParaLogin.addEventListener('click', () => {
+    fecharModal(modalCriarConta);
+    abrirModal(modalLogin);
+  });
+}
