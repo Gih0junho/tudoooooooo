@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (planoSelecionado === "Free") {
         window.location.href = "homelogin.html";
       } else {
-        window.location.href = "pagamento.html";
+        window.location.href = "/pages/pagamento.html";
       }
     });
   });
