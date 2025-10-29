@@ -45,3 +45,28 @@ document.addEventListener('DOMContentLoaded', function() {
         greetingEl.textContent = 'Olá';
     }
 });
+
+
+  let isDark = false;
+
+  function toggleTheme() {
+    isDark = !isDark;
+    document.body.classList.toggle('dark-mode');
+
+    const icon = document.getElementById('themeIcon');
+    icon.src = isDark ? '/assents/img/2.png' : '/assents/img/3.png';
+    icon.alt = isDark ? 'Lua' : 'Sol';
+  }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const username = localStorage.getItem("username");
+  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
+  const dadosUsuario = usuarios[username] || {};
+
+  if (dadosUsuario.foto) {
+    const avatar = document.getElementById("avatar-principal");
+    if (avatar) {
+      avatar.src = dadosUsuario.foto;
+    }
+  }
+});

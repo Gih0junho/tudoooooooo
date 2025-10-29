@@ -78,17 +78,18 @@
 
 /* Cabeçalho */
 #header {
-  margin-left: 250px;
+  margin-left: 240px;
   height: 70px;
   background: linear-gradient(90deg, #2980b9, #3498db);
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 30px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  margin-top: -10px;
+  width: 1340px;
 }
 #header h1 {
-  margin: 0;
+  margin: 50px;
   font-size: 1.8rem;
   font-weight: 700;
 }
@@ -123,4 +124,25 @@
     padding: 20px;
     text-align: center;
   }
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #ff0000;
+  transition: background 0.3s ease, color 0.3s ease;
+  
+}
+
+label {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  margin-bottom: 10px;
+}
+
+#themeIcon {
+  width: 40px;
+  cursor: pointer;
+  margin-top: -14px;
 }

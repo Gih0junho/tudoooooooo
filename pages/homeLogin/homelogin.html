@@ -12,7 +12,7 @@
 
     <div id="sidebar">
         <div id="user-photo">
-            <img src="../../assents/img/UserA.png" alt="Foto do Usuário" onclick="toggleMenu()">
+            <img id="avatar-principal" src="../../assents/img/UserA.png" alt="Foto do Usuário" onclick="toggleMenu()">
             <span id="user-greeting" aria-live="polite">Olá, Usuario</span>
             <ul id="menu">
                 <li><a href="perfil.html">Configurações</a></li>
@@ -26,6 +26,10 @@
     <div id="header">
         <h1>Bem-vindo à sua Página Inicial</h1>
     </div>
+    <input type="checkbox" id="toggleTheme" onchange="toggleTheme()" hidden />
+<label for="toggleTheme">
+  <img src="/assents/img/3.png" alt="Sol" id="themeIcon" style="width: 55px; cursor: pointer;" />
+</label>
     
     <script src="../../assents/js/homelogin.js"></script>
 </body>
