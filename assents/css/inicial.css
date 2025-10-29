@@ -444,3 +444,15 @@ select {
   background-size: 16px;
 }
 
+#BT-SB {
+  background: #ff6600;
+  border: none;
+  padding: 14px 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  width: fit-content;
+  transition: background-color 0.3s;
+}

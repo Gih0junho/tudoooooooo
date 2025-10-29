@@ -126,3 +126,7 @@ if (linkParaLogin) {
     abrirModal(modalLogin);
   });
 }
+
+document.getElementById('BT-SB').addEventListener('click', function() {
+    window.location.href = 'pages/homeLogin/plano.html';
+});
