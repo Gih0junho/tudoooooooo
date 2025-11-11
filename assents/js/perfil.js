@@ -1,76 +1,52 @@
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("JS carregado");
+  // Selecionar elementos
   const inputFoto = document.getElementById("input-foto");
   const btnMudarFoto = document.getElementById("lpps");
   const profilePic = document.getElementById("profile-pic");
-  const form = document.getElementById("form-usuario");
-  const btnLogout = document.getElementById("btn-logout");
-
-  // Carregar dados salvos (se houver)
-  const username = localStorage.getItem("username");
-  const usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
-  const dadosUsuario = usuarios[username] || {};
-
-  // Preencher dados do perfil
-  if (dadosUsuario) {
-    document.getElementById("loginUser").value = dadosUsuario.nome || "";
-    document.getElementById("newEmail").value = dadosUsuario.email || "";
-    document.getElementById("newPhone").value = dadosUsuario.telefone || "";
-    if (dadosUsuario.foto) {
-      profilePic.src = dadosUsuario.foto;
-    }
+  // Verificar se os elementos existem
+  if (!inputFoto) {
+    console.error("Elemento #input-foto não encontrado!");
+    return;
   }
-
-  // Mudar foto
-  btnMudarFoto.addEventListener("click", () => {
-    inputFoto.click();
+  if (!btnMudarFoto) {
+    console.error("Elemento #lpps não encontrado!");
+    return;
+  }
+  if (!profilePic) {
+    console.error("Elemento #profile-pic não encontrado!");
+    return;
+  }
+  // Evento de clique no lápis
+  btnMudarFoto.addEventListener("click", function (event) {
+    event.preventDefault(); // Evita qualquer comportamento padrão do botão
+    console.log("Botão lápis clicado!");
+    inputFoto.click(); // Dispara o clique no input de arquivo
   });
-
+  // Evento de mudança de imagem
   inputFoto.addEventListener("change", function () {
-    const file = this.files[0];
-    if (file && file.type.startsWith("image/")) {
+    const file = inputFoto.files[0];
+    if (file) {
+      console.log("Imagem selecionada:", file.name);
       const reader = new FileReader();
       reader.onload = function (e) {
         profilePic.src = e.target.result;
-        dadosUsuario.foto = e.target.result;
-        usuarios[username] = dadosUsuario;
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
-        mostrarMensagem("Foto atualizada com sucesso!");
+        const username = localStorage.getItem("username");
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || {};
+        if (usuarios[username]) {
+          usuarios[username].foto = e.target.result;
+          localStorage.setItem("usuarios", JSON.stringify(usuarios));
+          console.log("Foto salva no localStorage!");
+        }
       };
       reader.readAsDataURL(file);
     } else {
-      alert("Por favor, selecione uma imagem válida.");
+      console.log("Nenhuma imagem selecionada.");
     }
   });
+  
+});
 
-  // Salvar dados do formulário
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    dadosUsuario.nome = document.getElementById("loginUser").value;
-    dadosUsuario.email = document.getElementById("newEmail").value;
-    dadosUsuario.telefone = document.getElementById("newPhone").value;
-    dadosUsuario.foto = profilePic.src;
-
-    usuarios[username] = dadosUsuario;
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    mostrarMensagem("Informações salvas com sucesso!");
-  });
-
-  // Logout
-  btnLogout.addEventListener("click", () => {
-    localStorage.removeItem("username");
-    alert("Logout realizado com sucesso!");
-    window.location.href = "/index.html";
-  });
-
-  // Toast de sucesso
-  function mostrarMensagem(texto) {
-    const toast = document.getElementById("mensagem-sucesso");
-    toast.textContent = texto;
-    toast.classList.add("show");
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 3000);
-  }
 
   // Gráfico de barras simples (por tipo de exercício)
   if (document.getElementById("graficoExercicios")) {
@@ -104,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (document.getElementById("graficoLinha")) {
     gerarGrafico();
   }
-});
+
 
 // Função para gerar gráfico com filtros
 function gerarGrafico() {
@@ -179,17 +155,20 @@ function gerarGrafico() {
     }
   });
 }
+// === COLOQUE ISSO NO FINAL DO ARQUIVO perfil.js ===
 
-// Alternar tema claro/escuro
-  let isDark = false;
+let isDark = false;
 
-  function toggleTheme() {
-    isDark = !isDark;
-    document.body.classList.toggle('dark-mode');
-    const icon = document.getElementById('themeIcon');
+function toggleTheme() {
+  isDark = !isDark;
+  document.body.classList.toggle('dark-mode');
+  const icon = document.getElementById('themeIcon');
+  if (icon) {
     icon.src = isDark ? '/assents/img/2.png' : '/assents/img/3.png';
     icon.alt = isDark ? 'Lua' : 'Sol';
   }
+}
+  
 
   document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("graficoLinha");
