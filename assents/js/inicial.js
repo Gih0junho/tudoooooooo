@@ -1,4 +1,6 @@
-// Depoimentos
+// =======================
+// 📢 Depoimentos
+// =======================
 const depoimentos = document.querySelectorAll('.depoimento');
 const btnPrev = document.getElementById('prevDepoimento');
 const btnNext = document.getElementById('nextDepoimento');
@@ -24,10 +26,9 @@ if (depoimentos.length > 0 && btnPrev && btnNext) {
   mostrarDepoimento(currentIndex);
 }
 
-
-
-
-// Modal login e criar conta
+// =======================
+// 🔐 Login e Criar Conta
+// =======================
 const btnCriarConta = document.getElementById('btnCriarConta');
 const modalLogin = document.getElementById('modalLogin');
 const modalCriarConta = document.getElementById('modalCriarConta');
@@ -40,8 +41,14 @@ const logo = document.getElementById('logo');
 
 let usuarios = JSON.parse(localStorage.getItem('usuarios')) || {};
 
-function abrirModal(modal) { modal.style.display = 'flex'; }
-function fecharModal(modal) { modal.style.display = 'none'; }
+function abrirModal(modal) {
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // impede rolagem atrás do modal
+}
+function fecharModal(modal) {
+  modal.style.display = 'none';
+  document.body.style.overflow = ''; // restaura rolagem
+}
 
 const btnLogin = document.getElementById('btnLogin');
 if (btnLogin) {
@@ -50,75 +57,94 @@ if (btnLogin) {
 if (btnCriarConta) {
   btnCriarConta.addEventListener('click', () => abrirModal(modalCriarConta));
 }
-closeLogin.addEventListener('click', () => fecharModal(modalLogin));
-closeCriar.addEventListener('click', () => fecharModal(modalCriarConta));
+
+if (closeLogin) closeLogin.addEventListener('click', () => fecharModal(modalLogin));
+if (closeCriar) closeCriar.addEventListener('click', () => fecharModal(modalCriarConta));
 
 window.addEventListener('click', e => {
-  if(e.target === modalLogin) fecharModal(modalLogin);
-  if(e.target === modalCriarConta) fecharModal(modalCriarConta);
+  if (e.target === modalLogin) fecharModal(modalLogin);
+  if (e.target === modalCriarConta) fecharModal(modalCriarConta);
 });
 
-// Login unificado e redirecionamento
+// =======================
+// 🚪 Login Unificado
+// =======================
+const formLogin = document.getElementById('formLogin');
+if (formLogin) {
+  formLogin.addEventListener('submit', e => {
+    e.preventDefault();
+    const user = e.target.loginUser.value.trim();
+    const pass = e.target.loginPass.value;
 
-document.getElementById('formLogin').addEventListener('submit', e => {
-  e.preventDefault();
-  const user = e.target.loginUser.value.trim();
-  const pass = e.target.loginPass.value;
+    if (usuarios[user] && usuarios[user].senha === pass) {
+      localStorage.setItem('username', user);
+      localStorage.setItem('dadosUsuario', JSON.stringify(usuarios[user]));
+      alert(`Bem-vindo(a), ${user}!`);
+      fecharModal(modalLogin);
+      e.target.reset();
 
- if (usuarios[user] && usuarios[user].senha === pass) {
-    localStorage.setItem('username', user);
-    localStorage.setItem('dadosUsuario', JSON.stringify(usuarios[user]));
-    alert(`Bem-vindo(a), ${user}!`);
-    fecharModal(modalLogin);
+      console.log('Redirecionando para: pages/homeLogin/homelogin.html');
+      window.location.href = 'pages/homeLogin/homelogin.html';
+    } else {
+      alert('Usuário ou senha incorretos.');
+    }
+  });
+}
+
+// =======================
+// ✳️ Criar Conta
+// =======================
+const formCriarConta = document.getElementById('formCriarConta');
+if (formCriarConta) {
+  formCriarConta.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const user = e.target.newUser.value.trim();
+    const pass = e.target.newPass.value;
+    const email = e.target.newEmail.value;
+    const telefone = e.target.newPhone.value;
+
+    if (!user || !pass || !email) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    if (user in usuarios) {
+      alert('Usuário já existe. Escolha outro.');
+      return;
+    }
+
+    usuarios[user] = {
+      senha: pass,
+      nome: user,
+      email,
+      telefone,
+      endereco: "",
+      foto: ""
+    };
+
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    alert('Conta criada com sucesso! Agora faça login.');
+    fecharModal(modalCriarConta);
     e.target.reset();
-    
-    // Corrige o caminho do redirecionamento
-    console.log('Redirecionando para:', 'pages/homeLogin/homelogin.html');
-    window.location.href = 'pages/homeLogin/homelogin.html';
-  } else {
-    alert('Usuário ou senha incorretos.');
-  }
-});
+  });
+}
 
+// =======================
+// 🏠 Logo e Navegação
+// =======================
+if (logo) {
+  logo.addEventListener('click', () => {
+    if (areaRestrita && areaRestrita.style.display === 'block' && btnSair) {
+      btnSair.click();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
-// Criar conta
-document.getElementById('formCriarConta').addEventListener('submit', e => {
-  e.preventDefault();
-
-  const user = e.target.newUser.value.trim();
-  const pass = e.target.newPass.value;
-  const email = e.target.newEmail.value;
-  const telefone = e.target.newPhone.value;
-
-  if(user in usuarios) {
-    alert('Usuário já existe. Escolha outro.');
-    return;
-  }
-
-  // Salva todos os dados
-  usuarios[user] = {
-    senha: pass,
-    nome: user,
-    email: email,
-    telefone: telefone,
-    endereco: "",
-    foto: ""
-  };
-
-  localStorage.setItem('usuarios', JSON.stringify(usuarios));
-  alert('Conta criada com sucesso! Agora faça login.');
-  fecharModal(modalCriarConta);
-  e.target.reset();
-});
-
-// Logo volta para o início
-logo.addEventListener('click', () => {
-  if(areaRestrita && areaRestrita.style.display === 'block' && btnSair) {
-    btnSair.click();
-  }
-  window.scrollTo({top:0, behavior:'smooth'});
-});
-
+// =======================
+// 🔁 Alternar Modais
+// =======================
 const linkParaLogin = document.getElementById('linkParaLogin');
 if (linkParaLogin) {
   linkParaLogin.addEventListener('click', () => {
@@ -127,6 +153,12 @@ if (linkParaLogin) {
   });
 }
 
-document.getElementById('BT-SB').addEventListener('click', function() {
+// =======================
+// 💳 Botão de Plano
+// =======================
+const btnPlano = document.getElementById('BT-SB');
+if (btnPlano) {
+  btnPlano.addEventListener('click', () => {
     window.location.href = 'pages/homeLogin/plano.html';
-});
+  });
+}

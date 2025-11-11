@@ -1,4 +1,4 @@
-/* Sidebar estilizado */
+/* ======== SIDEBAR DESKTOP ======== */
 #sidebar {
   width: 250px;
   height: 100vh;
@@ -9,31 +9,13 @@
   padding-top: 30px;
   box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+  transition: transform 0.3s ease;
 }
 
-/* Menu lateral */
-#sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-#sidebar ul li {
-  padding: 15px 20px;
-}
-#sidebar ul li a {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.3s ease, padding-left 0.3s ease;
-}
-#sidebar ul li a:hover {
-  background-color: #3b5770;
-  padding-left: 30px;
-}
-
-/* Foto e saudação */
 #user-photo {
   text-align: center;
   margin-bottom: 20px;
+  position: relative;
 }
 #user-photo img {
   width: 70px;
@@ -41,6 +23,10 @@
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+#user-photo img:hover {
+  transform: scale(1.1);
 }
 #user-greeting {
   display: block;
@@ -51,98 +37,176 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Menu suspenso */
+/* ======== MENU (PAINEL MOBILE) ======== */
 #menu {
   display: none;
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  border-radius: 8px;
-  overflow: hidden;
-  animation: fadeIn 0.3s ease;
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 260px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.3);
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  z-index: 2000;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+#menu.active {
+  right: 0;
+  display: block;
+}
+
+#menu ul {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+#menu li {
+  margin-bottom: 10px;
 }
 #menu li a {
   color: #333;
-  padding: 12px 20px;
+  padding: 14px 18px;
   display: block;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 #menu li a:hover {
-  background-color: #f0f0f0;
-  color: #2980b9;
+  background-color: #2980b9;
+  color: #fff;
+}
+#menu .lgt a {
+  color: #e74c3c;
+}
+#menu .lgt a:hover {
+  background-color: #ffe6e6;
+  color: #c0392b;
 }
 
-/* Cabeçalho */
+/* ======== BACKDROP (FUNDO ESCURO QUANDO ABRE PAINEL) ======== */
+#backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ======== HEADER ======== */
 #header {
-  margin-left: 240px;
+  margin-left: 250px;
   height: 70px;
   background: linear-gradient(90deg, #2980b9, #3498db);
   color: white;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  margin-top: -10px;
-  width: 1340px;
+  width: calc(100% - 250px);
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 #header h1 {
-  margin: 50px;
   font-size: 1.8rem;
   font-weight: 700;
 }
 
-/* Botão logout */
-.lgt a {
-  color: #e74c3c !important;
+/* ======== BOTÕES ======== */
+.botoes-opinil {
+  margin-left: 280px;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.botao-opinil {
+  background-color: #2980b9;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  text-decoration: none;
   font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
-.lgt a:hover {
-  background-color: #ffe6e6 !important;
-  color: #c0392b !important;
-}
-
-/* Animação */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+.botao-opinil:hover {
+  background-color: #3498db;
+  transform: scale(1.05);
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  #sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    padding: 20px;
-  }
-  #header {
-    margin-left: 0;
-    height: auto;
-    padding: 20px;
-    text-align: center;
-  }
-}
-
+/* ======== TEMA ESCURO ======== */
 .dark-mode {
   background-color: #121212;
-  color: #ff0000;
+  color: #f1f1f1;
   transition: background 0.3s ease, color 0.3s ease;
-  
+}
+.dark-mode #sidebar {
+  background: linear-gradient(180deg, #1b2838, #2c3e50);
+}
+.dark-mode #menu {
+  background: #1e1e1e;
+}
+.dark-mode #menu li a {
+  color: #e0e0e0;
+}
+.dark-mode #menu li a:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+.dark-mode #header {
+  background: linear-gradient(90deg, #1b2838, #2c3e50);
+}
+.dark-mode .botao-opinil {
+  background-color: #2c3e50;
+}
+.dark-mode .botao-opinil:hover {
+  background-color: #34495e;
 }
 
+/* ======== ÍCONE DO TEMA ======== */
 label {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 999;
-  margin-bottom: 10px;
+}
+#themeIcon {
+  width: 45px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#themeIcon:hover {
+  transform: rotate(20deg);
 }
 
-#themeIcon {
-  width: 40px;
-  cursor: pointer;
-  margin-top: -14px;
+/* ======== RESPONSIVO ======== */
+@media (max-width: 900px) {
+  #sidebar {
+    display: none;
+  }
+  #header {
+    margin-left: 0;
+    width: 100%;
+  }
+  .botoes-opinil {
+    margin-left: 0;
+    justify-content: center;
+  }
+  #user-photo img {
+    width: 60px;
+    height: 60px;
+  }
+  #user-greeting {
+    font-size: 1rem;
+  }
 }
