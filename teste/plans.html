@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TudoFala — Planos</title>
+  <style>
+    :root{
+      --accent:#0b84ff;
+      --muted:#666;
+      --card-bg:#fff;
+      --page-bg:#ffffff;
+      --shadow: 0 6px 18px rgba(10,10,10,0.06);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{ margin:0; background:var(--page-bg); color:#111; }
+    header{ display:flex; align-items:center; gap:12px; padding:20px; border-bottom:1px solid #eee; }
+    .logo{ display:flex; align-items:center; gap:10px; }
+    .logo svg{ width:44px; height:44px; }
+    .container{ max-width:1100px; margin:32px auto; padding:0 20px; }
+    h1{ margin:0 0 8px 0; font-size:1.6rem; }
+    p.lead{ margin:0 0 24px 0; color:var(--muted); }
+
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:20px; }
+    .card{
+      background:var(--card-bg);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      display:flex; flex-direction:column; gap:12px;
+      border: 1px solid #f0f0f0;
+    }
+    .card.best{ border: 2px solid var(--accent); transform: translateY(-6px); }
+    .price{ font-size:1.8rem; font-weight:700; color:#111; }
+    .tag{ display:inline-block; background:#f7fbff; color:var(--accent); padding:6px 10px; border-radius:999px; font-weight:600; font-size:0.85rem; }
+    ul.features{ margin:0; padding-left:18px; color:var(--muted); }
+    button.select{
+      margin-top:auto;
+      background:var(--accent);
+      color:#fff;
+      border:0;
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .info-small{ font-size:0.85rem; color:var(--muted); }
+
+    /* highlight differences */
+    .feature-yes{ color: #111; }
+    .feature-no{ color: #ccc; text-decoration: line-through; }
+
+    @media (max-width:420px){
+      h1{ font-size:1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" role="img" aria-label="Logo TudoFala — golfinho">
+      <!-- Substitua pelo seu SVG ou imagem -->
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#eaf8ff"/>
+        <path d="M12 36c8-12 30-12 36-4s-2 16-6 18c-10 4-24-2-30-6 0 0 2-6 0-8z" fill="#0b84ff"/>
+      </svg>
+      <div>
+        <strong>TudoFala</strong><br>
+        <span style="font-size:0.85rem;color:var(--muted)">Oratória & Comunicação</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Escolha o plano ideal para melhorar sua comunicação</h1>
+    <p class="lead">Exercícios práticos de respiração, gestos, postura e apresentações. Comece grátis e avance pro.</p>
+
+    <div class="grid" id="plansGrid">
+      <!-- Cards gerados por JS -->
+    </div>
+  </main>
+
+  <script>
+    // Definição dos planos e features (fácil de ajustar)
+    const plans = [
+      {
+        id: 'free',
+        name: 'Free',
+        priceLabel: 'R$0',
+        priceValue: 0,
+        tag: 'Gratuito',
+        highlight: false,
+        features: {
+          'Acesso ao módulo básico de exercícios': true,
+          'Suporte por chat': false,
+          'Avaliação de vídeo (automática)': false,
+          'Aulas ao vivo mensais': false,
+          'Modelos de apresentação': true
+        }
+      },
+      {
+        id: 'basic',
+        name: 'Básico',
+        priceLabel: 'R$29/mês',
+        priceValue: 29,
+        tag: 'Mais popular',
+        highlight: true,
+        features: {
+          'Acesso ao módulo básico de exercícios': true,
+          'Suporte por chat': true,
+          'Avaliação de vídeo (automática)': true,
+          'Aulas ao vivo mensais': false,
+          'Modelos de apresentação': true
+        }
+      },
+      {
+        id: 'premium',
+        name: 'Premium',
+        priceLabel: 'R$79/mês',
+        priceValue: 79,
+        tag: 'Pro',
+        highlight: false,
+        features: {
+          'Acesso ao módulo básico de exercícios': true,
+          'Suporte por chat': true,
+          'Avaliação de vídeo (automática)': true,
+          'Aulas ao vivo mensais': true,
+          'Modelos de apresentação': true
+        }
+      }
+    ];
+
+    const grid = document.getElementById('plansGrid');
+
+    function createCard(p){
+      const div = document.createElement('article');
+      div.className = 'card' + (p.highlight ? ' best':'');
+
+      div.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="tag">${p.tag}</div>
+            <h2 style="margin:8px 0 0 0">${p.name}</h2>
+          </div>
+          <div style="text-align:right">
+            <div class="price">${p.priceLabel}</div>
+            <div style="font-size:0.9rem;color:var(--muted)">pagamento mensal</div>
+          </div>
+        </div>
+
+        <ul class="features" aria-hidden="false">
+          ${Object.keys(p.features).map(f=>{
+            const ok = p.features[f];
+            return `<li class="${ok ? 'feature-yes':'feature-no'}">${f}</li>`;
+          }).join('')}
+        </ul>
+
+        <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+          <div class="info-small">Plan: ${p.id}</div>
+          <button class="select" data-plan="${p.id}" data-price="${p.priceValue}">Selecionar plano</button>
+        </div>
+      `;
+      return div;
+    }
+
+    plans.forEach(p=>{
+      grid.appendChild(createCard(p));
+    });
+
+    // Ao clicar em selecionar, redirecionar para checkout.html com query params
+    grid.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button.select');
+      if(!btn) return;
+      const plan = btn.dataset.plan;
+      const price = btn.dataset.price;
+      // redireciona para checkout e passa infos
+      window.location.href = `checkout.html?plan=${encodeURIComponent(plan)}&price=${encodeURIComponent(price)}`;
+    });
+  </script>
+</body>
+</html>

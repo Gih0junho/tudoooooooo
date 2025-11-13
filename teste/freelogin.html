@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TudoFala — Acesso</title>
+  <style>
+    body{ font-family:system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:0; background:#fff; color:#111; }
+    .container{ max-width:900px; margin:30px auto; padding:20px; }
+    .card{ background:#fff; padding:18px; border-radius:12px; box-shadow:0 6px 18px rgba(10,10,10,0.04); margin-bottom:16px; }
+    .badge{ display:inline-block; padding:6px 10px; border-radius:999px; background:#f0f8ff; color:#0b84ff; font-weight:700; }
+    .locked{ color:#c0c0c0; text-decoration:line-through; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="welcome" class="card">
+      <h2 id="welcomeTitle">Bem-vindo(a) à TudoFala</h2>
+      <div id="purchaseInfo" class="muted"></div>
+    </div>
+
+    <div class="card">
+      <h3>Recursos disponíveis</h3>
+      <ul id="resourcesList"></ul>
+    </div>
+
+    <div class="card" id="nextSteps">
+      <h3>Próximos passos</h3>
+      <ol>
+        <li>Complete seu perfil</li>
+        <li>Faça o primeiro exercício de respiração</li>
+        <li>Envie um vídeo para avaliação (se seu plano permitir)</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    // Recria as regras de quais features cada plano tem
+    const PLAN_FEATURES = {
+      free: {
+        name:'Free',
+        features: {
+          'Exercícios básicos de respiração': true,
+          'Modelos de apresentação (limitado)': true,
+          'Envio de vídeo para avaliação': false,
+          'Aulas ao vivo': false,
+          'Suporte por chat': false
+        }
+      },
+      basic: {
+        name:'Básico',
+        features: {
+          'Exercícios básicos de respiração': true,
+          'Modelos de apresentação (completo)': true,
+          'Envio de vídeo para avaliação': true,
+          'Aulas ao vivo': false,
+          'Suporte por chat': true
+        }
+      },
+      premium: {
+        name:'Premium',
+        features: {
+          'Exercícios básicos de respiração': true,
+          'Modelos de apresentação (completo)': true,
+          'Envio de vídeo para avaliação': true,
+          'Aulas ao vivo': true,
+          'Suporte por chat': true
+        }
+      }
+    };
+
+    // Lê purchase do localStorage
+    const raw = localStorage.getItem('tudofala_purchase');
+    let purchase;
+    try{ purchase = JSON.parse(raw); } catch(e){ purchase = null; }
+
+    const welcomeTitle = document.getElementById('welcomeTitle');
+    const purchaseInfo = document.getElementById('purchaseInfo');
+    const resourcesList = document.getElementById('resourcesList');
+
+    let planId = 'free';
+    if(purchase && purchase.planId) planId = purchase.planId;
+    // Se não houver purchase, mantemos free (acesso limitado)
+    const plan = PLAN_FEATURES[planId] || PLAN_FEATURES.free;
+
+    welcomeTitle.textContent = `Você está no plano: ${plan.name}`;
+    if(purchase){
+      purchaseInfo.textContent = `Comprado em: ${new Date(purchase.boughtAt).toLocaleString()} — Forma: ${purchase.method.toUpperCase()}`;
+    } else {
+      purchaseInfo.textContent = 'Você está usando o plano gratuito. Faça upgrade a qualquer momento.';
+    }
+
+    resourcesList.innerHTML = Object.keys(plan.features).map(k=>{
+      const ok = plan.features[k];
+      return `<li class="${ok ? '' : 'locked'}">${k} ${ok ? '<span class="badge">Disponível</span>' : '<span style="color:#c0c0c0"> (não disponível)</span>'}</li>`;
+    }).join('');
+  </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assents/img/download-removebg-preview.png">
 
 </head>
-<body> 
+
+<body>
 
     <div id="sidebar">
         <div id="backdrop"></div>
@@ -28,19 +30,79 @@
         <h1>Bem-vindo à sua Página Inicial</h1>
     </div>
     <input type="checkbox" id="toggleTheme" onchange="toggleTheme()" hidden />
-<label for="toggleTheme">
-  <img src="/assents/img/3.png" alt="Sol" id="themeIcon" style="width: 55px; cursor: pointer;" />
-</label>
-   
-<section class="opinil">
-    <!--criar boteos clicavies na parte de cima da pagina-->
-    <div class="botoes-opinil">
-        <a href="perfil.html" class="botao-opinil">Perfil</a>
-        <a href="informacoes.html" class="botao-opinil">Informações</a>
-        <br><br><br><br>
-        <a href="progresso.html" class="botao-opinil">Progresso</a>
-        <a href="plano.html" class="botao-opinil">Plano</a>
+    <label for="toggleTheme">
+        <img src="/assents/img/3.png" alt="Sol" id="themeIcon" style="width: 55px; cursor: pointer;" />
+    </label>
+
+    <div class="container">
+        <a href="Frequencia.html" class="card">
+            <img src="/assents/img/icon-fire.jpeg" alt="icone de fogo"> Frequência
+        </a>
+
+        <a href="Desafio.html" class="card">
+            <img src="/assents/img/icon-alvo.png" alt="icone de fogo"> Desafios
+        </a>
+
+        <a href="Treinamento.html" class="card">
+            <img src="/assents/img/icon-treinamento.jpg" alt="icone de fogo"> Treinamento
+        </a>
+
+        <a href="Mindcare.html" class="card">
+            <img src="/assents/img/icon-medic.jpeg" alt="icone de fogo"> MindCare
+        </a>
+    </div>
+
+    <!-- Carrossel de Imagens -->
+    <div class="carousel">
+        <div class="slides">
+            <img src="/assents/img/Banner beba água lettering ilustrado divertido azul.png" alt="Banner 1">
+            <img src="/assents/img/Banner promocional de divulgação de cupom na cor amarela.png" alt="Banner 2">
+            <img src="/assents/img/Banner beba água lettering ilustrado divertido azul.png" alt="Banner 1">
+            <img src="/assents/img/Banner promocional de divulgação de cupom na cor amarela.png" alt="Banner 2">
+            <img src="/assents/img/Banner beba água lettering ilustrado divertido azul.png" alt="Banner 1">
+            <img src="/assents/img/Banner promocional de divulgação de cupom na cor amarela.png" alt="Banner 2">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <section class="exercicios-container">
+  <h2>Exercícios Diários</h2>
+
+  <!-- Exercício 1 - Desbloqueado -->
+  <div class="exercicio-card ativo" id="ex1">
+    <img src="/assents/img/icon-aberto.png" class="cajado" alt="Cajado aberto">
+    <div class="exercicio-info">
+      <h3>Foco e Concentração</h3>
+      <p>Atividade inicial para preparar sua mente para o dia.</p>
+      <button class="btn-ver-mais" data-id="1">Ver mais</button>
+    </div>
+  </div>
+
+  <!-- Exercício 2 - Bloqueado -->
+  <div class="exercicio-card bloqueado" id="ex2">
+    <img src="/assents/img/icon-fechado.jpeg" class="cajado" alt="Cajado fechado">
+    <div class="exercicio-info">
+      <h3>Respiração Controlada</h3>
+      <p>Complete o exercício anterior para desbloquear este.</p>
+      <button class="btn-bloqueado" disabled>Bloqueado</button>
+    </div>
+  </div>
+
+  <!-- Exercício 3 - Bloqueado -->
+  <div class="exercicio-card bloqueado" id="ex3">
+    <img src="/assents/img/icon-fechado.jpeg" class="cajado" alt="Cajado fechado">
+    <div class="exercicio-info">
+      <h3>Alongamento e Equilíbrio</h3>
+      <p>Complete o exercício anterior para desbloquear este.</p>
+      <button class="btn-bloqueado" disabled>Bloqueado</button>
+    </div>
+  </div>
 </section>
+
+
+
     <script src="../../assents/js/homelogin.js"></script>
 </body>
+
 </html>

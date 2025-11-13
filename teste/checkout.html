@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TudoFala — Checkout</title>
+  <style>
+    body{ font-family:system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:0; background:#fafafa; color:#111; }
+    .container{ max-width:900px; margin:30px auto; padding:20px; }
+    .card{ background:#fff; padding:18px; border-radius:12px; box-shadow:0 6px 18px rgba(10,10,10,0.05); margin-bottom:16px; }
+    .row{ display:flex; gap:16px; align-items:center; }
+    .payment-methods{ display:flex; gap:8px; flex-wrap:wrap; }
+    .pm{ padding:10px 12px; border-radius:8px; border:1px solid #eee; cursor:pointer; }
+    .pm.active{ border-color:#0b84ff; background:#f0f8ff; }
+    button.pay{ background:#0b84ff; color:#fff; border:0; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700; }
+    input, textarea{ width:100%; padding:10px; border-radius:8px; border:1px solid #ddd; }
+    .muted{ color:#666; font-size:0.95rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="summary">
+      <h2 id="planName">Plano</h2>
+      <div class="muted" id="planPrice">Preço</div>
+      <ul id="planFeatures"></ul>
+    </div>
+
+    <div class="card">
+      <h3>Escolha a forma de pagamento</h3>
+      <div class="payment-methods" id="methods">
+        <div class="pm" data-method="pix">PIX</div>
+        <div class="pm" data-method="card">Cartão</div>
+        <div class="pm" data-method="boleto">Boleto</div>
+      </div>
+
+      <div id="methodArea" style="margin-top:16px">
+        <!-- Conteúdo trocado por JS -->
+      </div>
+
+      <div style="margin-top:18px; display:flex; gap:10px;">
+        <button class="pay" id="payButton">Finalizar compra</button>
+        <button id="cancelButton" style="background:#fff;border:1px solid #ddd;padding:10px;border-radius:8px;cursor:pointer">Cancelar</button>
+      </div>
+      <p style="margin-top:12px" class="muted">Após finalizar, você será redirecionado(a) à página de acesso.</p>
+    </div>
+  </div>
+
+  <script>
+    // Planos (mesmo objeto básico do plans.html — manter consistência)
+    const PLANS = {
+      free: {
+        name:'Free',
+        priceLabel:'R$0',
+        priceValue:0,
+        features:[
+          'Acesso ao módulo básico de exercícios',
+          'Modelos de apresentação'
+        ]
+      },
+      basic: {
+        name:'Básico',
+        priceLabel:'R$29/mês',
+        priceValue:29,
+        features:[
+          'Acesso ao módulo básico de exercícios',
+          'Suporte por chat',
+          'Avaliação de vídeo (automática)',
+          'Modelos de apresentação'
+        ]
+      },
+      premium: {
+        name:'Premium',
+        priceLabel:'R$79/mês',
+        priceValue:79,
+        features:[
+          'Acesso ao módulo básico de exercícios',
+          'Suporte por chat',
+          'Avaliação de vídeo (automática)',
+          'Aulas ao vivo mensais',
+          'Modelos de apresentação'
+        ]
+      }
+    };
+
+    // Pegar query params
+    function q(name){ 
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+
+    const planId = q('plan') || 'free';
+    const priceParam = q('price') || (PLANS[planId] ? PLANS[planId].priceValue : 0);
+
+    const planNameEl = document.getElementById('planName');
+    const planPriceEl = document.getElementById('planPrice');
+    const planFeaturesEl = document.getElementById('planFeatures');
+
+    const chosenPlan = PLANS[planId] || PLANS.free;
+
+    planNameEl.textContent = chosenPlan.name + (planId === 'free' ? ' (Gratuito)' : '');
+    planPriceEl.textContent = chosenPlan.priceLabel;
+    planFeaturesEl.innerHTML = chosenPlan.features.map(f=>`<li>${f}</li>`).join('');
+
+    // Payment method UI
+    let selectedMethod = 'pix';
+    const methods = document.getElementById('methods');
+    const methodArea = document.getElementById('methodArea');
+
+    function renderMethodArea(){
+      if(selectedMethod === 'pix'){
+        methodArea.innerHTML = `
+          <div class="muted">Gere o QR Code de pagamento (simulado) e depois clique em "Finalizar compra" quando efetuar o PIX.</div>
+          <div style="margin-top:12px; padding:12px; border-radius:8px; background:#f7faff; border:1px dashed #cce6ff;">
+            <strong>Chave PIX:</strong> tudofala@pix.exemplo<br>
+            <strong>Código PIX (simulado):</strong> ${generateRandomCode()}
+            <div style="margin-top:8px" class="muted">Abra seu internet banking e pague usando a chave. Este é um exemplo apenas.</div>
+          </div>
+        `;
+      } else if(selectedMethod === 'card'){
+        methodArea.innerHTML = `
+          <div class="muted">Insira os dados do cartão (este formulário é apenas para simulação).</div>
+          <div style="margin-top:8px">
+            <label>Número do cartão</label>
+            <input id="cardNumber" placeholder="4111 1111 1111 1111" />
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <input id="cardExpiry" placeholder="MM/AA" />
+              <input id="cardCvv" placeholder="CVV" style="width:120px" />
+            </div>
+            <input id="cardName" placeholder="Nome no cartão" style="margin-top:8px" />
+          </div>
+        `;
+      } else if(selectedMethod === 'boleto'){
+        methodArea.innerHTML = `
+          <div class="muted">Um boleto será gerado (simulado). Você pode salvar o número e pagar pelo internet banking.</div>
+          <div style="margin-top:12px; padding:12px; border-radius:8px; background:#fff7f0; border:1px dashed #ffd6a3;">
+            <strong>Número do boleto (simulado):</strong> ${generateBoletoNumber()}
+            <div class="muted" style="margin-top:8px">Após gerar, clique em "Finalizar compra" — esse exemplo marca como pago imediatamente (apenas para testes).</div>
+          </div>
+        `;
+      }
+    }
+
+    function generateRandomCode(){
+      return Math.random().toString(36).slice(2,10).toUpperCase();
+    }
+    function generateBoletoNumber(){
+      const part = Math.floor(Math.random()*1e11).toString().padStart(11,'0');
+      return `34191.79001 01043.510047 91020.150008 1  ${part}`;
+    }
+
+    methods.addEventListener('click', (e)=>{
+      const el = e.target.closest('.pm');
+      if(!el) return;
+      for(const pm of methods.querySelectorAll('.pm')) pm.classList.remove('active');
+      el.classList.add('active');
+      selectedMethod = el.dataset.method;
+      renderMethodArea();
+    });
+
+    // inicializa
+    methods.querySelector('[data-method="'+selectedMethod+'"]').classList.add('active');
+    renderMethodArea();
+
+    // Botão pagar - fluxo simulado
+    document.getElementById('payButton').addEventListener('click', ()=>{
+      // validação simples: se for cartão, checar campos (simulação)
+      if(selectedMethod === 'card'){
+        const num = document.getElementById('cardNumber').value.trim();
+        const name = document.getElementById('cardName').value.trim();
+        if(!num || !name){
+          alert('Preencha os dados do cartão (simulado).');
+          return;
+        }
+      }
+
+      // Simulação de processamento...
+      document.getElementById('payButton').textContent = 'Processando...';
+      document.getElementById('payButton').disabled = true;
+
+      setTimeout(()=>{
+        // Marcar no localStorage qual plano a pessoa comprou
+        const purchase = {
+          planId: planId,
+          planName: chosenPlan.name,
+          price: chosenPlan.priceValue,
+          method: selectedMethod,
+          boughtAt: new Date().toISOString()
+        };
+        localStorage.setItem('tudofala_purchase', JSON.stringify(purchase));
+
+        // Redireciona para a página de login/acesso
+        window.location.href = 'freelogin.html';
+      }, 1000);
+    });
+
+    document.getElementById('cancelButton').addEventListener('click', ()=>{
+      window.history.back();
+    });
+  </script>
+</body>
+</html>
