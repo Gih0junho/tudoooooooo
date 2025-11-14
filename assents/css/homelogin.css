@@ -309,8 +309,9 @@ label {
   gap: 25px;
   padding: 40px;
   margin-left: 370px;
-  background-color: #121212;
+  background-color: #f1e18775;
   color: white;
+  border-radius: 20px;
 }
 
 .exercicios-container h2 {

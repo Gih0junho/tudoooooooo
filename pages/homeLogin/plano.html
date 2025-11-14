@@ -1,61 +1,72 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Planos - Tudo Fala</title>
-  <link rel="stylesheet" href="/assents/css/planos.css">
-  <link rel="shortcut icon" type="image/x-icon" href="/assents/img/download-removebg-preview.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos</title>
+    <link rel="stylesheet" href="/assents/css/planos.css">
 </head>
 <body>
-  <section class="planos">
-    <h1>Escolha seu plano</h1>
-    <div class="painel-planos">
 
-      <div class="plano free" data-plano="Free">
-        <div class="icone">💧💧💧</div>
-        <h2>Free</h2>
-        <p>Atividades básicas e vídeos gratuitos do YouTube. Ideal para começar sem compromisso.</p>
-        <ul>
-          <li>✔️ Acesso a atividades iniciais</li>
-          <li>✔️ Vídeos abertos do YouTube</li>
-          <li>✔️ Sem custo</li>
-        </ul>
-        <button>Selecionar plano</button>
-      </div>
+    <!-- TOPO COM NOME + PLANO -->
+    <header class="header-user">
+        <div class="user-info">
+            <img id="userPlanIcon" class="plan-icon" src="" alt="">
+            <span id="userName" class="user-name"></span>
+        </div>
+    </header>
 
-      <div class="plano basic" data-plano="Basic">
-        <div class="icone">🌊🌊🌊</div>
-        <h2>Basic</h2>
-        <p>Conteúdo exclusivo com profissionais da saúde, vídeos guiados e metas semanais.</p>
-        <ul>
-          <li>✔️ Atividades guiadas por especialistas</li>
-          <li>✔️ Vídeos exclusivos da plataforma</li>
-          <li>✔️ Recomendações personalizadas</li>
-          <li>✔️ Metas semanais e feedback automático</li>
-        </ul>
-        <button>Selecionar plano</button>
-      </div>
+    <h1 class="titulo">Escolha seu Plano</h1>
 
-      <div class="plano premium" data-plano="Premium">
-        <div class="icone">🐬</div>
-        <h2>Premium</h2>
-        <p>Atividades avançadas, chamadas com profissionais, desafios e evolução personalizada.</p>
-        <ul>
-          <li>✔️ Escolha de nível e foco</li>
-          <li>✔️ Desafios personalizados</li>
-          <li>✔️ Consultas por chamada com profissionais</li>
-          <li>✔️ Filtro por estilo de profissional</li>
-          <li>✔️ Agendamento flexível ou atendimento imediato</li>
-          <li>✔️ Histórico de evolução e conquistas</li>
-        </ul>
-        <button>Selecionar plano</button>
-      </div>
+    <div class="planos-container">
+
+        <!-- PLANO FREE -->
+        <div class="plano-card free">
+            <h2>FREE</h2>
+            <p class="preco">R$ 0,00 / mês</p>
+
+            <ul class="features">
+                <li class="ok">Acesso a vídeos gravados</li>
+                <li class="ok">Exercícios diários</li>
+                <li class="lock">Atendimentos com profissionais</li>
+                <li class="lock">Plano personalizado</li>
+            </ul>
+
+            <a href="/pages/homeLogin/pagamento.html?plano=free" class="btn-assinar desativado">Assinar</a>
+        </div>
+
+        <!-- PLANO BASIC -->
+        <div class="plano-card basic">
+            <h2>BASIC</h2>
+            <p class="preco">R$ 19,90 / mês</p>
+
+            <ul class="features">
+                <li class="ok">Acesso a vídeos gravados</li>
+                <li class="ok">Exercícios diários</li>
+                <li class="ok">Atendimentos com profissionais</li>
+                <li class="lock">Plano personalizado Premium</li>
+            </ul>
+
+            <a href="/pages/homeLogin/pagamento.html?plano=basic" class="btn-assinar">Assinar</a>
+        </div>
+
+        <!-- PLANO PREMIUM -->
+        <div class="plano-card premium">
+            <h2>PREMIUM</h2>
+            <p class="preco">R$ 39,90 / mês</p>
+
+            <ul class="features">
+                <li class="ok">Acesso a vídeos gravados</li>
+                <li class="ok">Exercícios diários</li>
+                <li class="ok">Atendimentos com profissionais ilimitados</li>
+                <li class="ok">Plano personalizado Premium</li>
+            </ul>
+
+            <a href="/pages/homeLogin/pagamento.html?plano=premium" class="btn-assinar">Assinar</a>
+        </div>
 
     </div>
 
-    <div id="mensagem-plano" class="mensagem"></div>
-  </section>
-
-  <script src="/assents/js/planos.js"></script>
+    <script src="/assents/js/planos.js"></script>
 </body>
 </html>

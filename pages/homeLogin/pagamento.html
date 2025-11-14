@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="/assents/css/pagamento.css">
+</head>
+<body>
+
+<header class="topo">
+    <div class="user-info">
+        <img id="foto-user" src="/assents/img/UserA.png" alt="Foto do Usuário">
+        <span id="nome-user">Usuário</span>
+    </div>
+    <h1>Finalizar Pagamento</h1>
+</header>
+
+<section class="conteudo">
+
+    <div class="box-plano">
+        <h2 id="plano-nome">Plano Escolhido</h2>
+        <p id="plano-preco">R$ --</p>
+        <ul id="plano-beneficios"></ul>
+    </div>
+
+    <div class="box-pagamento">
+        <h2>Escolha a forma de pagamento</h2>
+
+        <div class="opcoes">
+            <label class="opcao">
+                <input type="radio" name="pagamento" value="cartao" checked>
+                Cartão de Crédito
+            </label>
+
+            <label class="opcao">
+                <input type="radio" name="pagamento" value="pix">
+                Pix
+            </label>
+
+            <label class="opcao">
+                <input type="radio" name="pagamento" value="boleto">
+                Boleto
+            </label>
+        </div>
+
+        <div id="area-cartao" class="forma-ativa">
+
+            <input type="text" placeholder="Número do cartão">
+            <input type="text" placeholder="Nome impresso no cartão">
+
+            <div class="linha">
+                <input type="text" placeholder="Validade (MM/AA)">
+                <input type="text" placeholder="CVV">
+            </div>
+        </div>
+
+        <div id="area-pix" class="hidden">
+            <p>Use o QR Code para pagar:</p>
+            <img src="/assents/img/qrcode_exemplo.png" class="qrcode">
+        </div>
+
+        <div id="area-boleto" class="hidden">
+            <p>Um boleto será gerado após confirmar o pagamento.</p>
+        </div>
+
+        <button id="btn-confirmar">Confirmar Pagamento</button>
+    </div>
+
+</section>
+
+<script src="/assents/js/pagamento.js"></script>
+</body>
+</html>
